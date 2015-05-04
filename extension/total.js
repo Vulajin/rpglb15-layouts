@@ -1,6 +1,6 @@
 'use strict';
 
-var DONATION_STATS_URL = 'https://gamesdonequick.com/tracker/12?json';
+var DONATION_STATS_URL = 'https://hosted.gamesdonequick.com/external/1?json';
 var POLL_INTERVAL = 3 * 60 * 1000;
 
 var util = require('util');

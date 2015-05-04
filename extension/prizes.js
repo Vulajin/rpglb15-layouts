@@ -1,7 +1,7 @@
 'use strict';
 
 // The list of currently active prizes can be retrieved from this url
-var PRIZES_URL = 'https://gamesdonequick.com/tracker/search/?type=prize&feed=current';
+var PRIZES_URL = 'https://hosted.gamesdonequick.com/external/search/?type=prize&feed=current';
 var POLL_INTERVAL = 3 * 60 * 1000;
 
 var util = require('util');

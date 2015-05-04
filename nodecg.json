@@ -1,13 +1,12 @@
 {
-  "name": "agdq15-layouts",
+  "name": "rpglb15-layouts",
   "version": "1.1.0",
   "nodecgDependency": "~0.5.0",
-  "homepage": "http://gamesdonequick.com/",
+  "homepage": "http://rpglimitbreak.com/",
   "authors": [
-    "Chris Hanel <chrishanel@gmail.com>",
-    "Alex Van Camp <email@alexvan.camp>"
+    "Vinay Sarpeshkar <vsarpeshkar@gmail.com>"
   ],
-  "description": "Awesome Games Done Quick 2015 layouts",
+  "description": "RPG Limit Break 2015 Layouts",
   "license": "Apache 2.0",
   "extension": {
     "express": false,

@@ -1,5 +1,5 @@
 {
-  "name": "agdq15-layouts",
+  "name": "rpglb15-layouts",
   "dependencies": {
     "request": "^2.51.0",
     "google-spreadsheet": "~0.2.8"
