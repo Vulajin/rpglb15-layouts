@@ -16,7 +16,7 @@ rpglb15-layouts is provided under the Apache v2 license, which is available to r
 [license]: LICENSE
 
 ### Credits for RPGLB layouts
-[Vinay Sarpeshkar](vsarpeshkar@gmail.com), developer
+[Vulajin](http://twitch.tv/vulajin), developer  
 [Meagan Roach](http://meaganroach.com/), graphic designer
 
 ### Credits for original AGDQ layouts
