@@ -1,27 +1,27 @@
-.agdq15-layouts .control-label {
+.rpglb15-layouts .control-label {
   text-transform: capitalize;
   flex-basis: 68px;
 }
-.agdq15-layouts .form-control-static {
+.rpglb15-layouts .form-control-static {
   flex-basis: 192px;
 }
-.agdq15-layouts .column {
+.rpglb15-layouts .column {
   width: 100%;
   margin: 0 4px;
 }
-.agdq15-layouts .column:first-of-type {
+.rpglb15-layouts .column:first-of-type {
   margin-right: 4px;
   margin-left: 0;
 }
-.agdq15-layouts .column:last-of-type {
+.rpglb15-layouts .column:last-of-type {
   margin-right: 0;
   margin-left: 4px;
 }
-.agdq15-layouts .tt-suggestions,
-.agdq15-layouts .tt-suggestion {
+.rpglb15-layouts .tt-suggestions,
+.rpglb15-layouts .tt-suggestion {
   width: 400px;
 }
-.agdq15-layouts .tt-dropdown-menu {
+.rpglb15-layouts .tt-dropdown-menu {
   width: 420px;
 }
 .tt-suggestion {

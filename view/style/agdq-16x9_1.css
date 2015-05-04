@@ -1,5 +1,5 @@
 .container {
-    background-image: url("/view/agdq15-layouts/img/bg/agdq-16x9_1.png");
+    background-image: url("/view/rpglb15-layouts/img/bg/agdq-16x9_1.png");
 }
 .game {
     width: 426px;
@@ -47,7 +47,7 @@
      right: 12px;
 }
 .rotation-sponsors {
-    background-image: url("/view/agdq15-layouts/img/sponsors/16x9_1.png");
+    background-image: url("/view/rpglb15-layouts/img/sponsors/16x9_1.png");
 }
 .rotation-deck-label {
     font-size: 30px;

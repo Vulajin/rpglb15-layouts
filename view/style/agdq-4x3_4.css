@@ -1,5 +1,5 @@
 .container {
-    background-image: url("/view/agdq15-layouts/img/bg/agdq-4x3_4.png");
+    background-image: url("/view/rpglb15-layouts/img/bg/agdq-4x3_4.png");
 }
 .game {
     width: 394px;
@@ -58,7 +58,7 @@
     height: 46px;
 }
 #logoBug {
-    background: url("/view/agdq15-layouts/img/header-logo.png") no-repeat;
+    background: url("/view/rpglb15-layouts/img/header-logo.png") no-repeat;
     position: absolute;
     left: 10px;
     bottom: 7px;
@@ -74,7 +74,7 @@
     right: 443px;
 }
 .rotation-sponsors {
-    background-image: url("/view/agdq15-layouts/img/sponsors/4x3_4.png");
+    background-image: url("/view/rpglb15-layouts/img/sponsors/4x3_4.png");
 }
 .rotation-deck-label {
     font-size: 26px;

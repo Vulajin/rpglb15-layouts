@@ -28,10 +28,10 @@ updateBtn.click(function () {
         }
 
         if (updated) {
-            console.info('[agdq15-layouts] Prizes successfully updated');
+            console.info('[rpglb15-layouts] Prizes successfully updated');
             showUpdateResult(updateGroup, 'success', 'Got current prizes!');
         } else {
-            console.info('[agdq15-layouts] Prizes unchanged, not updating');
+            console.info('[rpglb15-layouts] Prizes unchanged, not updating');
             showUpdateResult(updateGroup, 'default', 'Prizes unchanged, not updating');
         }
     });
@@ -41,7 +41,7 @@ function showUpdateResult(el, type, msg) {
     var resultEl = el.find('.updateResult-' + type);
 
     if (resultEl.hasClass('updateResult-show')) {
-        console.warn('[agdq15-layouts] Tried to show multiple update results at once for element:', el);
+        console.warn('[rpglb15-layouts] Tried to show multiple update results at once for element:', el);
         return;
     }
 

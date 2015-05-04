@@ -1,4 +1,4 @@
-.agdq15-layouts .updateResult {
+.rpglb15-layouts .updateResult {
   position: absolute;
   left: 1px;
   top: 100%;
@@ -7,13 +7,13 @@
   pointer-events: none;
   cursor: default;
 }
-.agdq15-layouts .updateResult-show {
+.rpglb15-layouts .updateResult-show {
   -webkit-animation: updateResult-show 4s;
   -moz-animation: updateResult-show 4s;
   -o-animation: updateResult-show 4s;
   animation: updateResult-show 4s;
 }
-.agdq15-layouts .returnsResult {
+.rpglb15-layouts .returnsResult {
   overflow: hidden;
 }
 @-webkit-keyframes updateResult-show {

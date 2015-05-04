@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+}
+
+.container {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    margin: 0;
+    overflow: hidden;
+    font-family: "Roboto";
+    top: 0;
+    left: 0;
+}
+
+/* Runner */
+.runner-info {
+    position: absolute;
+}
+
+/* Game */
+.game {
+    text-align: left;
+    position: absolute;
+    white-space: nowrap;
+}
+.game-title {
+    font-weight: 700;
+}
+.game-srDetails {
+    display: flex;
+    width: 100%;
+}
+.game-srDetails-estimate {
+    display: inline-block;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Twitch / Twitter */
+.twitch {
+    content: url("/view/rpglb15-layouts/img/twitch-icon.png");
+    display: inline-block;
+}
+.twitter {
+    content: url("/view/rpglb15-layouts/img/twitter-icon.png");
+}
+
+/* Header */
+.header {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Up Next */
+.upnext {
+    position: absolute;
+    font-size: 18px;
+    font-weight: 700;
+}
+.upnext-label {
+    padding-right: 0.25em;
+    float: left;
+    vertical-align: top;
+}
+.upnext-game {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

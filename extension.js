@@ -1,6 +1,6 @@
 'use strict';
 
-var log = require('../../lib/logger')('agdq15-layouts');
+var log = require('../../lib/logger')('rpglb15-layouts');
 
 module.exports = function(nodecg) {
     try {

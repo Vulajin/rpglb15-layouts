@@ -3,7 +3,7 @@ var totalDisplay = panel.find('.totalDisplay');
 var updateGroup = panel.find('.js-update');
 var updateBtn = updateGroup.find('button');
 
-var modal = $('#agdq15-layouts_editTotal');
+var modal = $('#rpglb15-layouts_editTotal');
 var saveTotal = modal.find('.js-save');
 var totalEdit = modal.find('input[name="total"]');
 
@@ -41,10 +41,10 @@ updateBtn.click(function () {
         }
 
         if (updated) {
-            console.info('[agdq15-layouts] Total successfully updated');
+            console.info('[rpglb15-layouts] Total successfully updated');
             showUpdateResult(updateGroup, 'success', 'Got current total!');
         } else {
-            console.info('[agdq15-layouts] Total unchanged, not updating');
+            console.info('[rpglb15-layouts] Total unchanged, not updating');
             showUpdateResult(updateGroup, 'default', 'Total unchanged');
         }
 
@@ -59,7 +59,7 @@ function showUpdateResult(el, type, msg) {
     var resultEl = el.find('.updateResult-' + type);
 
     if (resultEl.hasClass('updateResult-show')) {
-        console.warn('[agdq15-layouts] Tried to show multiple update results at once for element:', el);
+        console.warn('[rpglb15-layouts] Tried to show multiple update results at once for element:', el);
         return;
     }
 

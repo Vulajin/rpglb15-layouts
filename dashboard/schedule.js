@@ -5,13 +5,14 @@ var updateGroup = panel.find('.js-update');
 var updateBtn = updateGroup.find('button');
 var manualTypeahead = panel.find('.typeahead');
 var manualBtn = panel.find('.js-manualBtn');
-var editModal = $('#agdq15-layouts_editRun');
+var editModal = $('#rpglb15-layouts_editRun');
 
 var runInfo = panel.find('.runInfo');
 var runInfoGame = runInfo.find('.runInfo-game');
 var runInfoConsole = runInfo.find('.runInfo-console');
 var runInfoRunners = runInfo.find('.runInfo-runners');
 var runInfoStreamlinks = runInfo.find('.runInfo-streamlinks');
+var runInfoTwitterlinks = runInfo.find('.runInfo-twitterlinks');
 var runInfoEstimate = runInfo.find('.runInfo-estimate');
 var runInfoCategory = runInfo.find('.runInfo-category');
 var runInfoComments = runInfo.find('.runInfo-comments');
@@ -72,6 +73,7 @@ function updateRunInfo(currentRun) {
         runInfoConsole.find('.form-control-static').text(currentRun.console);
         runInfoRunners.find('.form-control-static').text(currentRun.runners.join(', '));
         runInfoStreamlinks.find('.form-control-static').text(currentRun.streamlinks.join(', '));
+        runInfoTwitterlinks.find('.form-control-static').text(currentRun.twitterlinks.join(', '));
         runInfoEstimate.find('.form-control-static').text(currentRun.estimate);
         runInfoCategory.find('.form-control-static').text(currentRun.category);
         runInfoComments.find('.form-control-static').text(currentRun.comments);
@@ -105,10 +107,10 @@ updateBtn.click(function () {
         }
 
         if (updated) {
-            console.info('[agdq15-layouts] Schedule successfully updated');
+            console.info('[rpglb15-layouts] Schedule successfully updated');
             showUpdateResult(updateGroup, 'success', 'Got updated schedule!');
         } else {
-            console.info('[agdq15-layouts] Schedule unchanged, not updated');
+            console.info('[rpglb15-layouts] Schedule unchanged, not updated');
             showUpdateResult(updateGroup, 'default', 'Schedule unchanged, not updating');
         }
     });
@@ -118,7 +120,7 @@ function showUpdateResult(el, type, msg) {
     var resultEl = el.find('.updateResult-' + type);
 
     if (resultEl.hasClass('updateResult-show')) {
-        console.warn('[agdq15-layouts] Tried to show multiple update results at once for element:', el);
+        console.warn('[rpglb15-layouts] Tried to show multiple update results at once for element:', el);
         return;
     }
 
@@ -177,6 +179,7 @@ editModal.on('show.bs.modal', function(e) {
     editModal.find('input[name="console"]').val(nodecg.variables.currentRun.console);
     editModal.find('input[name="runners"]').val(nodecg.variables.currentRun.runners);
     editModal.find('input[name="streamlinks"]').val(nodecg.variables.currentRun.streamlinks);
+    editModal.find('input[name="twitterlinks"]').val(nodecg.variables.currentRun.twitterlinks);
     editModal.find('input[name="category"]').val(nodecg.variables.currentRun.category);
     editModal.find('input[name="estimate"]').val(nodecg.variables.currentRun.estimate);
 });
@@ -198,6 +201,12 @@ editModal.find('.js-save').click(function() {
         streamlinks[index] = runner.trim();
     });
     currentRun.streamlinks = streamlinks;
+
+    var twitterlinks = editModal.find('input[name="twitterlinks"]').val().split(',');
+    twitterlinks.forEach(function(runner, index) {
+        twitterlinks[index] = runner.trim();
+    });
+    currentRun.twitterlinks = twitterlinks;
 
     currentRun.estimate = editModal.find('input[name="estimate"]').val();
     nodecg.variables.currentRun = currentRun;

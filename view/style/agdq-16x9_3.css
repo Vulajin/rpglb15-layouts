@@ -1,8 +1,8 @@
 .container {
-    background-image: url("/view/agdq15-layouts/img/bg/agdq-16x9_3.png");
+    background-image: url("/view/rpglb15-layouts/img/bg/agdq-16x9_3.png");
 }
 #logoBug {
-    background: url("/view/agdq15-layouts/img/header-logo.png") no-repeat;
+    background: url("/view/rpglb15-layouts/img/header-logo.png") no-repeat;
     position: relative;
     top: 12px;
     width: 98px;
@@ -67,7 +67,7 @@
     font-size: 30px;
 }
 .rotation-sponsors {
-    background-image: url("/view/agdq15-layouts/img/sponsors/16x9_3.png");
+    background-image: url("/view/rpglb15-layouts/img/sponsors/16x9_3.png");
 }
 .rotation-deck-label {
     font-size: 18px;

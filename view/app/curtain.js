@@ -1,11 +1,11 @@
 (function() {
     var BANNER_URLS = [
-        "/view/agdq15-layouts/img/banners/0.png",
-        "/view/agdq15-layouts/img/banners/1.png",
-        "/view/agdq15-layouts/img/banners/2.png",
-        "/view/agdq15-layouts/img/banners/3.png",
-        "/view/agdq15-layouts/img/banners/4.png",
-        "/view/agdq15-layouts/img/banners/5.png"
+        "/view/rpglb15-layouts/img/banners/0.png",
+        "/view/rpglb15-layouts/img/banners/1.png",
+        "/view/rpglb15-layouts/img/banners/2.png",
+        "/view/rpglb15-layouts/img/banners/3.png",
+        "/view/rpglb15-layouts/img/banners/4.png",
+        "/view/rpglb15-layouts/img/banners/5.png"
     ];
 
     var $banner = $('.banner');

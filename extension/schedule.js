@@ -89,6 +89,11 @@ function update() {
                     streamlinks[index] = streamlink.trim();
                 });
 
+                var twitterlinks = rows[i].twitterlinks.split(',');
+                twitterlinks.forEach(function(twitterlink, index) {
+                    twitterlinks[index] = twitterlink.trim();
+                });
+
                 relevantData.push({
                     game: rows[i].game || "Unknown",
                     runners: runners || ["Unknown"],
@@ -98,6 +103,7 @@ function update() {
                     category: rows[i].category || "Any%",
                     startTime: Date.parse(rows[i]['dateandtimeestgmt-5']) || null,
                     streamlinks: streamlinks || ["Unknown"],
+                    twitterlinks: twitterlinks || ["Unknown"],
                     index: i
                 });
             }

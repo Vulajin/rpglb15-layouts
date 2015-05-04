@@ -40,6 +40,7 @@ div(style="display: flex;")
             +runInfoProperty('console')
             +runInfoProperty('runners')
             +runInfoProperty('streamlinks')
+            +runInfoProperty('twitterlinks')
             +runInfoProperty('estimate')
             +runInfoProperty('category')
             +runInfoProperty('comments')
@@ -47,9 +48,9 @@ div(style="display: flex;")
         .ncg-btn-group
             .btn-group.btn-group-justified.returnsResult
                 .btn-group
-                    button.btn.btn-xs.btn-primary(type='button' data-toggle="modal" data-target="#agdq15-layouts_editRun") Edit Manually
+                    button.btn.btn-xs.btn-primary(type='button' data-toggle="modal" data-target="#rpglb15-layouts_editRun") Edit Manually
 
-#agdq15-layouts_editRun.modal.fade
+#rpglb15-layouts_editRun.modal.fade
     .modal-dialog
         .modal-content
             .modal-header
@@ -75,6 +76,11 @@ div(style="display: flex;")
                     span.input-group-addon Stream links
                     input.form-control(type="text" name="streamlinks", placeholder="Use a comma-separated list")
                     span.input-group-addon(style="font-size: 16px; cursor: help;" data-toggle="tooltip" data-placement="left" data-container="body" title="Separate each runner's channel with a comma")
+                        i.fa.fa-question-circle
+                .input-group(style="margin-top: 6px;")
+                    span.input-group-addon Twitter links
+                    input.form-control(type="text" name="twitterlinks", placeholder="Use a comma-separated list")
+                    span.input-group-addon(style="font-size: 16px; cursor: help;" data-toggle="tooltip" data-placement="left" data-container="body" title="Separate each runner's Twitter with a comma")
                         i.fa.fa-question-circle
                 .input-group(style="margin-top: 6px;")
                     span.input-group-addon Category

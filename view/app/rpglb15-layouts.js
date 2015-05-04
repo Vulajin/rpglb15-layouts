@@ -21,6 +21,12 @@
         new TimelineMax({ repeat: -1 }),
         new TimelineMax({ repeat: -1 })
     ];
+    var socialTls = [
+        new TimelineMax({ repeat: -1 }),
+        new TimelineMax({ repeat: -1 }),
+        new TimelineMax({ repeat: -1 }),
+        new TimelineMax({ repeat: -1 })
+    ]
     var $totalAmt = $('.footer-total-amount');
     var $upcoming = $('.rotation-upcoming');
 
@@ -45,13 +51,6 @@
                 }
                 
                 generateUpcoming();
-            }
-        });
-
-        nodecg.declareSyncedVar({
-            name: 'currentPrizes',
-            setter: function(newVal) {
-                makeRotationTimeline(newVal);
             }
         });
 
@@ -110,8 +109,8 @@
             tl.staggerFrom(splits.$gameEstimate.chars, 0.8, {opacity:0, y:-10, ease:Back.easeOut}, 0.01, "0");
         }
 
-        if ($gameCategory.text().replace(' - EST:', '').trim() !== run.category) {
-            $gameCategory.html(run.category + ' - EST:');
+        if ($gameCategory.text().replace(' -&nbsp;', '').trim() !== run.category) {
+            $gameCategory.html(run.category + ' -&nbsp;');
             textFit($gameCategory, { multiLine: false, maxFontSize: parseInt($gameCategory.css('font-size')) });
             splits.$gameCategory = new SplitText($gameCategory.children('.textFitted'), {type:"chars"});
             tl.staggerFrom(splits.$gameCategory.chars, 0.8, {opacity:0, y:-10, ease:Back.easeOut}, 0.01, "0");
@@ -121,48 +120,138 @@
             // check if the selector has any elements, most views don't actually have 4 runners
             if (!$el[0]) return;
 
+            var $runnerName = $el.children('.runner');
+            var $socialName = $el.children('.runner-social');
+
             // check if there is a runner for this el first
             if (!run.runners[i]) {
-                $el.html('Running Person');
-                $el.data('runners', '');
-                $el.data('streamlinks', '');
+                $runnerName.html('Speedrunner');
+                if ($twitchName) $twitchName.html('');
+                if ($twitterName) $twitterName.html('');
                 return;
             }
 
-            // if no change, return
-            if ($el.data('runners') === run.runners[i] && $el.data('streamlinks') === run.streamlinks[i]) return;
-            $el.data('runners', run.runners[i]);
-            $el.data('streamlinks', run.streamlinks[i]);
+            // Fill runner name blank if available
+            if ($runnerName) {
+                var mainContents = '';
+                var altContents = '';
+                var twitchAndRunnerMatch = false;
+                var showTwitch = false;
 
-            runnerTls[i].pause();
-            runnerTls[i].seek(0);
-            runnerTls[i].clear();
+                runnerTls[i].pause();
+                runnerTls[i].seek(0);
+                runnerTls[i].clear();
 
-            // if runner's name and twitch channel are identical, just use twitch channel
-            var isNameEqualToTwitch = run.runners[i].toLowerCase() === (run.streamlinks[i] || '').toLowerCase();
-            var twitchName = '<i class="fa fa-twitch"></i>&nbsp' + run.streamlinks[i];
-            var initialName = '';
-            if (isNameEqualToTwitch) {
-                initialName = twitchName;
-            } else {
-                initialName = run.runners[i];
+                if ($runnerName.hasClass('runner-info-short') && run.streamlinks[i]) {
+                    showTwitch = true;
+                }
+
+                if (run.streamlinks[i] && run.runners[i].toLowerCase() == run.streamlinks[i].toLowerCase()) {
+                    twitchAndRunnerMatch = true;
+                }
+
+                if (showTwitch && twitchAndRunnerMatch) {
+                    mainContents = '<img class="social twitch" />' + run.runners[i];
+                } else {
+                    mainContents = run.runners[i];
+
+                    if (showTwitch) {
+                        altContents = '<img class="social twitch" />' + run.streamlinks[i];
+                    }
+                }
+
+                $runnerName.html(mainContents);
+
+                if (showTwitch && !twitchAndRunnerMatch) {
+                    [altContents, mainContents].forEach(function(name) {
+                        runnerTls[i].set($runnerName, {
+                            onStart: function() {
+                                TweenLite.to($runnerName, 0.3, {
+                                    opacity: '0',
+                                    ease: Power1.easeIn,
+                                    onComplete: function() {
+                                        $runnerName.html(name);
+                                        TweenLite.to($runnerName, 0.3, {
+                                            opacity: '1',
+                                            ease: Power1.easeOut
+                                        }, '0.3');
+                                    }
+                                });
+                            }
+                        }, '+=5');
+                    });
+
+                    runnerTls[i].play();
+                }
             }
 
-            // initial swap anim from old name to new name
-            tl.to($el.children('.textFitted'), 0.3, {
-                left: '30px',
-                opacity: '0',
-                ease: Power1.easeIn,
-                onComplete: function() {
-                    $el.html(initialName);
-                    textFit($el, { multiLine: false, alignVert: true, maxFontSize: parseInt($el.css('font-size')) });
-                    tl.from($el.children('.textFitted'), 0.3, {
-                        left: '-30px',
-                        opacity: '0',
-                        ease: Power1.easeOut
-                    }, '0.3');
+            // Fill social details if possible
+            if ($socialName) {
+                var mainContents = '';
+                var altContents = '';
+                var twitchAndTwitterMatch = false;
+                var needsSwitch = false;
+
+                socialTls[i].pause();
+                socialTls[i].seek(0);
+                socialTls[i].clear();
+
+                if ($socialName.hasClass('runner-info-short') && run.streamlinks[i] && run.twitterlinks[i]) {
+                    needsSwitch = true;
                 }
-            }, '0');
+
+                if (run.streamlinks[i] && run.twitterlinks[i] && run.streamlinks[i].toLowerCase() == run.twitterlinks[i].toLowerCase()) {
+                    twitchAndTwitterMatch = true;
+                    needsSwitch = false;
+                }
+
+                if (run.streamlinks[i]) {
+                    mainContents = '<img class="social twitch" />'
+
+                    if (!twitchAndTwitterMatch) {
+                        mainContents = mainContents + run.streamlinks[i];
+                    }
+
+                    if (!twitchAndTwitterMatch && !needsSwitch) {
+                        mainContents = mainContents + '<div style="display:inline-block;width:16px"></div>';
+                    }
+                }
+
+                if (run.twitterlinks[i]) {
+                    if (needsSwitch) {
+                        altContents = '<img class="social twitter" />' + run.twitterlinks[i];
+                    } else {
+                        mainContents = mainContents + '<img class="social twitter" />' + run.twitterlinks[i];
+                    }
+                }
+
+                $socialName.html(mainContents);
+
+                if (needsSwitch) {
+                    [altContents, mainContents].forEach(function(name) {
+                        socialTls[i].set($socialName, {
+                            onStart: function() {
+                                TweenLite.to($socialName, 0.3, {
+                                    opacity: '0',
+                                    ease: Power1.easeIn,
+                                    onComplete: function() {
+                                        $socialName.html(name);
+                                        TweenLite.to($socialName, 0.3, {
+                                            opacity: '1',
+                                            ease: Power1.easeOut
+                                        }, '0.3');
+                                    }
+                                });
+                            }
+                        }, '+=5');
+                    });
+
+                    socialTls[i].play();
+                }
+            }
+
+            // Don't do any of this other crap - don't alternate
+            return;
 
             // if runner doesn't have a twitch channel, return
             if (!run.streamlinks[i]) return;
@@ -201,77 +290,15 @@
     /**************/
     /*  ROTATION  */
     /**************/
-    var $sponsors = $('.rotation-sponsors');
-    var $prizes = $('.rotation-prize');
-    var $prizeImg = $('.rotation-prize-img');
-    var $prizeName = $('.rotation-prize-name');
-    var $prizeMin = $('.rotation-prize-min');
-    var $deck = $('.rotation-deck');
-    var $deckGame = $('.rotation-deck-game');
-    var $deckTimer = $('.rotation-deck-timer');
+    var $upnextGame = $('.upnext-game');
 
-    // set up rotation area... rotation
-    var rotationTl = new TimelineMax({ repeat: -1 });
-    function makeRotationTimeline(prizes) {
-        prizes = prizes || nodecg.variables.currentPrizes;
-
-        rotationTl.pause();
-        rotationTl.seek(0);
-        rotationTl.clear();
-        rotationTl.to($sponsors, 0.5, { opacity: 0 }, window.layoutName === 'curtain' ? '+=10' : '+=90');
-
-        if (prizes) {
-            prizes.forEach(function(prize) {
-                rotationTl.to($prizes, 0.5, {
-                    onStart: function() {
-                        $prizeImg.css('background-image', 'url("'+ prize.image +'")');
-                        $prizeName.html(prize.name);
-                        $prizeMin.html('Min. Donation: ' + parseFloat(prize.minimumbid).formatMoney());
-                    },
-                    /*onComplete: function() {
-                        rotationTl.pause();
-                    },*/
-                    opacity: 1
-                });
-                rotationTl.to($prizes, 0.5, { opacity: 0 }, '+=6');
-            });
-        }
-
-        if (!window.noDeck) {
-            rotationTl.to($deck, 0.5, { opacity: 1 });
-            rotationTl.to($deck, 0.5, { opacity: 0 }, '+=6');
-        }
-
-        if (window.layoutName === 'curtain') {
-            rotationTl.to($upcoming, 0.5, { opacity: 1 });
-            rotationTl.to($upcoming, 0.5, { opacity: 0 }, '+=60');
-        }
-
-        rotationTl.to($sponsors, 0.5, { opacity: 1 });
-        rotationTl.play();
-    }
-
-    var deckTimerTicker = null;
     function setOnDeck(run) {
         if (!run) return;
 
-        $deckGame.html(run.game);
-        textFit($deckGame, { multiLine: false, maxFontSize: parseInt($deckGame.css('font-size')) });
+        var text = run.game;
 
-        clearInterval(deckTimerTicker);
-        if(run.startTime === null) {
-            $deckTimer.html('');
-        } else {
-            deckTimerTicker = setInterval(function() {
-                var timeLeft = run.startTime - Date.now(); // milliseconds
-                if (timeLeft < 0) {
-                    clearInterval(deckTimerTicker);
-                    $deckTimer.html('');
-                } else {
-                    $deckTimer.html('ETA ' + msToTime(timeLeft));
-                }
-            }, 1000)
-        }
+        $upnextGame.html(text);
+        textFit($upnextGame, { multiLine: false, maxFontSize: parseInt($upnextGame.css('font-size')) });
     }
 
     /***************/
@@ -302,18 +329,3 @@
 
     }
 })();
-
-function msToTime(duration) {
-    'use strict';
-
-    var milliseconds = parseInt((duration%1000)/100)
-        , seconds = parseInt((duration/1000)%60)
-        , minutes = parseInt((duration/(1000*60))%60)
-        , hours = parseInt((duration/(1000*60*60))%24);
-
-    hours = (hours < 10) ? "0" + hours : hours;
-    minutes = (minutes < 10) ? "0" + minutes : minutes;
-    seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-    return hours + ":" + minutes + ":" + seconds;
-}
