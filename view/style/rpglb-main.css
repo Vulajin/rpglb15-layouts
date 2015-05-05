@@ -50,6 +50,9 @@ body {
 .twitter {
     content: url("/view/rpglb15-layouts/img/twitter-icon.png");
 }
+.www {
+    content: url("/view/rpglb15-layouts/img/globe-icon.png");
+}
 
 /* Header */
 .header {
@@ -57,12 +60,26 @@ body {
     font-size: 24px;
     font-weight: 700;
 }
+.header-short {
+    position: absolute;
+}
+.header-donations {
+    position: absolute;
+    opacity: 0;
+}
 
 /* Up Next */
-.upnext {
+.extra {
     position: absolute;
     font-size: 18px;
     font-weight: 700;
+}
+.donations {
+    position: absolute;
+}
+.upnext {
+    position: absolute;
+    opacity: 0;
 }
 .upnext-label {
     padding-right: 0.25em;
@@ -70,6 +87,7 @@ body {
     vertical-align: top;
 }
 .upnext-game {
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }

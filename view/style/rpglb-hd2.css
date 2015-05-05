@@ -1,58 +1,61 @@
 .container {
-    background-image: url("/view/rpglb15-layouts/img/bg/rpglb-sd1.png");
+    background-image: url("/view/rpglb15-layouts/img/bg/rpglb-hd2.png");
     background-size: cover;
 }
 
 .game {
     width: 410px;
     height: 70px;
-    left: 115px;
-    bottom: 29px;
+    left: 516px;
+    top: 165px;
 }
 .game-title {
-    font-size: 32px;
+    font-size: 28px;
 }
 .game-srDetails-category {
-    font-size: 21px;
+    font-size: 18px;
 }
 .game-srDetails-estimate {
-    font-size: 21px;
+    font-size: 18px;
 }
 
 .header {
     width: 500px;
     height: 40px;
-    left: 797px;
-    top: 60px;
+    left: 431px;
+    top: 67px;
 }
 .header .social {
     margin-left: 1.5ex;
 }
 
 #runner1 {
-    left: 811px;
-    top: 533px;
+    left: 54px;
+    top: 329px;
 }
 #runner2 {
-    left: 998px;
-    top: 533px;
+    left: 681px;
+    top: 329px;
 }
 .runner-info {
-    width: 374px;
+    width: 568px;
     height: 60px;
 }
 .runner {
+    float: left;
     height: 36px;
-    font-size: 28px;
-    font-weight: 700;
-}
-.runner-social {
     font-size: 18px;
     font-weight: 700;
 }
+.runner-social {
+    position: relative;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: right;
+}
 
 .extra {
-    left: 811px;
-    top: 623px;
+    left: 444px;
+    top: 252px;
     width: 439px;
 }

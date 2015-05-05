@@ -27,8 +27,7 @@
         new TimelineMax({ repeat: -1 }),
         new TimelineMax({ repeat: -1 })
     ]
-    var $totalAmt = $('.footer-total-amount');
-    var $upcoming = $('.rotation-upcoming');
+    var $totalAmt = $('.donations-total');
 
     if (window.layoutName !== 'finale') {
         nodecg.declareSyncedVar({
@@ -71,13 +70,13 @@
         name: 'total',
         initialVal: 0,
         setter: function(newVal) {
-            var mony = parseFloat(newVal).formatMoney(); //#verifyvenuz
-            if ($totalAmt.text() == mony) return;
+            var money = parseFloat(newVal).formatMoney(); //#verifyvenuz
+            if ($totalAmt.text() == money) return;
             var tl = new TimelineLite();
             tl.to($totalAmt, 0.4, {
                 opacity: 0,
                 onComplete: function() {
-                    $totalAmt.html(mony);
+                    $totalAmt.html(money);
                 }
             });
             tl.to($totalAmt, 0.4, {
@@ -85,6 +84,27 @@
             });
         }
     });
+
+    var $donations = $('.donations');
+    var $upNext = $('.upnext');
+    var rotationTl = new TimelineMax({repeat: -1});
+    function setUpExtraRotation() {
+        rotationTl.pause();
+        rotationTl.seek(0);
+        rotationTl.clear();
+
+        if (!$donations || !$upNext) return;
+
+        rotationTl.to($donations, 0.5, {opacity: 0}, '+=60');
+        rotationTl.to($upNext, 0.5, {opacity: 1});
+
+        rotationTl.to($upNext, 0.5, {opacity: 0}, '+=60');
+        rotationTl.to($donations, 0.5, {opacity: 1});
+
+        rotationTl.play();
+    }
+
+    setUpExtraRotation();
 
     function setCurrentRun(run) {
         if (window.noCurrentRun) return;
@@ -113,9 +133,13 @@
 
             // check if there is a runner for this el first
             if (!run.runners[i]) {
-                $runnerName.html('Speedrunner');
-                if ($twitchName) $twitchName.html('');
-                if ($twitterName) $twitterName.html('');
+                $runnerName.html('');
+                runnerTls[i].pause();
+
+                if ($socialName) {
+                    $socialName.html('');
+                    socialTls[i].pause();
+                }
                 return;
             }
 
@@ -166,7 +190,7 @@
                                     }
                                 });
                             }
-                        }, '+=5');
+                        }, '+=30');
                     });
 
                     runnerTls[i].play();
@@ -231,7 +255,7 @@
                                     }
                                 });
                             }
-                        }, '+=5');
+                        }, '+=30');
                     });
 
                     socialTls[i].play();
@@ -255,7 +279,7 @@
         }
 
         $upnextGame.html(text);
-        textFit($upnextGame, { multiLine: false, maxFontSize: parseInt($upnextGame.css('font-size')) });
+        textFit($upnextGame, { multiLine: true, maxFontSize: parseInt($upnextGame.css('font-size')) });
     }
 
     /***************/
