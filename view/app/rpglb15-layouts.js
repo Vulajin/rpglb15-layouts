@@ -89,31 +89,19 @@
     function setCurrentRun(run) {
         if (window.noCurrentRun) return;
 
-        TweenLite.set($gameTitle, {perspective:400});
-        TweenLite.set($gameEstimate, {perspective:400});
-
-        var tl = new TimelineLite({ paused: true }),
-            splits = {};
-
         if ($gameTitle.text().trim() !== run.game) {
             $gameTitle.html(run.game);
             textFit($gameTitle, { multiLine: false, maxFontSize: parseInt($gameTitle.css('font-size')) });
-            splits.$gameTitle = new SplitText($gameTitle.children('.textFitted'), {type:"chars"});
-            tl.staggerFrom(splits.$gameTitle.chars, 0.8, {opacity:0, scale:0, y:80, rotationX:180, transformOrigin:"0% 50% -50",  ease:Back.easeOut}, 0.01, "0");
         }
 
         // Estimate does not need to be textFit
         if ($gameEstimate.text().trim() !== run.estimate) {
             $gameEstimate.html(run.estimate);
-            splits.$gameEstimate = new SplitText($gameEstimate, {type:"chars"});
-            tl.staggerFrom(splits.$gameEstimate.chars, 0.8, {opacity:0, y:-10, ease:Back.easeOut}, 0.01, "0");
         }
 
-        if ($gameCategory.text().replace(' -&nbsp;', '').trim() !== run.category) {
-            $gameCategory.html(run.category + ' -&nbsp;');
+        if ($gameCategory.text().replace(' - Estimate:&nbsp;', '').trim() !== run.category) {
+            $gameCategory.html(run.category + ' - Estimate:&nbsp;');
             textFit($gameCategory, { multiLine: false, maxFontSize: parseInt($gameCategory.css('font-size')) });
-            splits.$gameCategory = new SplitText($gameCategory.children('.textFitted'), {type:"chars"});
-            tl.staggerFrom(splits.$gameCategory.chars, 0.8, {opacity:0, y:-10, ease:Back.easeOut}, 0.01, "0");
         }
         
         runnerEls.forEach(function($el, i) {
@@ -249,42 +237,7 @@
                     socialTls[i].play();
                 }
             }
-
-            // Don't do any of this other crap - don't alternate
-            return;
-
-            // if runner doesn't have a twitch channel, return
-            if (!run.streamlinks[i]) return;
-
-            // if name and twitch channel are identical, return
-            if (isNameEqualToTwitch) return;
-
-            // else, name and twitch channel aren't identical and we must alternate between them
-            [twitchName, run.runners[i]].forEach(function(name) {
-                runnerTls[i].set($el, {
-                    onStart: function() {
-                        TweenLite.to($el.children('.textFitted'), 0.3, {
-                            left: '30px',
-                            opacity: '0',
-                            ease: Power1.easeIn,
-                            onComplete: function() {
-                                $el.html(name);
-                                textFit($el, { multiLine: false, alignVert: true, maxFontSize: parseInt($el.css('font-size')) });
-                                TweenLite.from($el.children('.textFitted'), 0.3, {
-                                    left: '-30px',
-                                    opacity: '0',
-                                    ease: Power1.easeOut
-                                }, '0.3');
-                            }
-                        });
-                    }
-                }, '+=30');
-            });
-            
-            runnerTls[i].play();
         });
-        
-        tl.play();
     }
 
     /**************/
@@ -296,6 +249,10 @@
         if (!run) return;
 
         var text = run.game;
+
+        if (run.category.toLowerCase() != 'any%') {
+            text = text + ' (' + run.category + ')';
+        }
 
         $upnextGame.html(text);
         textFit($upnextGame, { multiLine: false, maxFontSize: parseInt($upnextGame.css('font-size')) });

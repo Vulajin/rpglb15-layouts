@@ -26,10 +26,7 @@
     top: 60px;
 }
 .header .social {
-    height: 26px;
-    margin-left: 24px;
-    margin-right: 8px;
-    vertical-align: -5px;
+    margin-left: 1.5ex;
 }
 
 #runner1 {
@@ -41,25 +38,13 @@
     height: 60px;
 }
 .runner {
-    //background-color: #808080;
     height: 36px;
     font-size: 28px;
     font-weight: 700;
 }
-.runner .social {
-    height: 32px;
-    margin-right: 8px;
-    vertical-align: -6px;
-}
 .runner-social {
-    //background-color: #ffffff;
     font-size: 18px;
     font-weight: 700;
-}
-.runner-social .social {
-    height: 21px;
-    margin-right: 6px;
-    vertical-align: -4px;
 }
 
 .upnext {

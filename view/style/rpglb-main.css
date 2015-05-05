@@ -20,8 +20,8 @@ body {
 
 /* Game */
 .game {
-    text-align: left;
     position: absolute;
+    text-align: left;
     white-space: nowrap;
 }
 .game-title {
@@ -39,9 +39,13 @@ body {
 }
 
 /* Twitch / Twitter */
+.social {
+    height: 2ex;
+    vertical-align: -0.30ex;
+    margin-right: 0.50ex;
+}
 .twitch {
     content: url("/view/rpglb15-layouts/img/twitch-icon.png");
-    display: inline-block;
 }
 .twitter {
     content: url("/view/rpglb15-layouts/img/twitter-icon.png");
